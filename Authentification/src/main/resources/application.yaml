@@ -1,0 +1,11 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/authentificationflutter
+    username: root
+    password: ''
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 3342
