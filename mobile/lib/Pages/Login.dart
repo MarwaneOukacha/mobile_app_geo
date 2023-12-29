@@ -56,11 +56,6 @@ class Login extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
-                      padding: EdgeInsets.only(top: 30, left: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: Colors.black),
-                      ),
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,
