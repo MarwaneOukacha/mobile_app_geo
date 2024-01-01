@@ -80,7 +80,7 @@ class Registration extends StatelessWidget{
                           String password=_textFieldControllerPassword.text;
                           String PasswordConf=_textFieldControllerPasswordConf.text;
                           if(Username.isNotEmpty && Email.isNotEmpty && Tele.isNotEmpty && password.isNotEmpty && PasswordConf.isNotEmpty){
-                            final url =  Uri.parse('http://192.168.31.133:3342/registre');
+                            final url =  Uri.parse('http://172.16.11.133:3342/registre');
                             try{
                               Map<String, String> headers = {
                                 'Content-Type': 'application/json',
