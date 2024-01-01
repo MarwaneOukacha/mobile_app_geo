@@ -33,6 +33,7 @@ class AuthtificationServiceV1 implements AuthentificationService{
     @Override
     public void registre(AppUSER newUser) {
         newUser.setPassword(encoder.encode(newUser.getPassword()));
+        newUser.setRole("fournisseur");
         repo.save(newUser);
     }
 }

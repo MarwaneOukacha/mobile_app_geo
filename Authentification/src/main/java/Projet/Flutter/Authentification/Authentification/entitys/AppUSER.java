@@ -20,5 +20,5 @@ public class AppUSER {
     private String numTelephone;
     @Column(nullable = false)
     private String password;
-    private Role role;
+    private String role;
 }

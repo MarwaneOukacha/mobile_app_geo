@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/Pages/Login.dart';
+import 'package:mobile/services/inputFile.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class Registration extends StatelessWidget{
+  final TextEditingController _textFieldControllerEmail = TextEditingController();
+  final TextEditingController _textFieldControllerUsername = TextEditingController();
+  final TextEditingController _textFieldControllerPassword = TextEditingController();
+  final TextEditingController _textFieldControllerTele = TextEditingController();
+  final TextEditingController _textFieldControllerPasswordConf = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,11 +59,11 @@ class Registration extends StatelessWidget{
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        inputFile(label: "Username"),
-                        inputFile(label: "Telephone"),
-                        inputFile(label: "Email"),
-                        inputFile(label: "Password", obscureText: true),
-                        inputFile(label: "Password confirmation", obscureText: true)
+                        inputFile(label: "Username",controller: _textFieldControllerUsername),
+                        inputFile(label: "Telephone",controller: _textFieldControllerTele),
+                        inputFile(label: "Email",controller: _textFieldControllerEmail),
+                        inputFile(label: "Password", obscureText: true,controller: _textFieldControllerPassword),
+                        inputFile(label: "Password confirmation", obscureText: true,controller: _textFieldControllerPasswordConf)
                       ],
                     ),
                   ),
@@ -61,7 +73,43 @@ class Registration extends StatelessWidget{
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 70,
-                        onPressed: () {},
+                        onPressed: () async {
+                          String Username=_textFieldControllerUsername.text;
+                          String Email=_textFieldControllerEmail.text;
+                          String Tele=_textFieldControllerTele.text;
+                          String password=_textFieldControllerPassword.text;
+                          String PasswordConf=_textFieldControllerPasswordConf.text;
+                          if(Username.isNotEmpty && Email.isNotEmpty && Tele.isNotEmpty && password.isNotEmpty && PasswordConf.isNotEmpty){
+                            final url =  Uri.parse('http://192.168.31.133:3342/registre');
+                            try{
+                              Map<String, String> headers = {
+                                'Content-Type': 'application/json',
+                                'accept':'application/json'
+                              };
+                              Map<String, dynamic> postData = {
+                                'email': Email,
+                                'password': password,
+                                'numTelephone':Tele,
+                                'userName':Username
+                              };
+                              if(password==PasswordConf){
+                                var response = await http.post(
+                                  url,
+                                  headers: headers,
+                                  body: jsonEncode(postData), // Utilisation des données à envoyer
+                                );
+                                print(response.statusCode);
+                                if (response.statusCode == 200) {
+                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
+                                }else {
+                                  print("Erreur de connexion");
+                                }
+                              }
+                            }catch(e){
+                              print('Erreur: $e'); // Gère les erreurs potentielles
+                            }
+                          }
+                        },
                         color: Color(0xff0095ff),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -92,34 +140,3 @@ class Registration extends StatelessWidget{
 
 }
 
-Widget inputFile({label, obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-          fontWeight: FontWeight.w400,
-          fontSize: 15,
-          color: Colors.black,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-        ),
-      ),
-      SizedBox(height: 10),
-    ],
-  );
-}
