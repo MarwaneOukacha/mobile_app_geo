@@ -35,6 +35,7 @@ public class AuthentificationController {
     @PostMapping("/registre")
     public void Registre(@RequestBody UserDTO user){
         AppUSER newUser=new AppUSER();
+        newUser.setRole("superviseur");
         BeanUtils.copyProperties(user,newUser);
         service.registre(newUser);
     }
