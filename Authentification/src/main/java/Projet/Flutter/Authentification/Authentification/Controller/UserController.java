@@ -45,4 +45,8 @@ public class UserController {
         newUser.setPassword(encoder.encode(user.getPassword()));
         repo.save(newUser);
     }
+    @GetMapping("livreur/{id}")
+    public AppUSER GetLivreur(@PathVariable Long id){
+        return repo.findById(id).get();
+    }
 }

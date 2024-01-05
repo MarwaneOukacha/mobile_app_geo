@@ -72,7 +72,7 @@ class Login extends StatelessWidget {
                           String email=_textFieldControllerEmail.text;
                           String password=_textFieldControllerPaswword.text;
                           if (email.isNotEmpty && password.isNotEmpty) {
-                            final url =  Uri.parse('http://172.16.11.133:3342/Auth');
+                            final url =  Uri.parse('http://172.17.224.5:3342/Auth');
                             try{
                               Map<String, String> headers = {
                                 'Content-Type': 'application/json',

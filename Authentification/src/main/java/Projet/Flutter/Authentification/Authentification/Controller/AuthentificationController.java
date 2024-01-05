@@ -39,8 +39,4 @@ public class AuthentificationController {
         BeanUtils.copyProperties(user,newUser);
         service.registre(newUser);
     }
-    @GetMapping
-    public String Ok(){
-        return "Hello";
-    }
 }

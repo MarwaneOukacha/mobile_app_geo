@@ -14,7 +14,7 @@ import java.util.Date;
 public class PointVente {
     @Id @GeneratedValue
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long idLivreur;
     @Column(nullable = false)
     private Long idFournisseur;
@@ -28,8 +28,8 @@ public class PointVente {
     private String contact;
     @Column
     private String status;
-    @Column()
-    private Date dateVisite;
+    @Column(nullable = true)
+    private String dateVisite;
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDaffectation;

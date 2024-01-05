@@ -33,7 +33,7 @@ dependencies:
   http:  # Assurez-vous d'utiliser la dernière version disponible
   dio:
   flutter_map: ^6.1.0
-
+  webview_flutter: ^2.0.13
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,6 +65,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/welcom.jpg
+     - assets/map/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

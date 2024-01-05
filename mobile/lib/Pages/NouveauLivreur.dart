@@ -77,7 +77,7 @@ class NouveauLivreur extends StatelessWidget{
                           String Tele=_textFieldControllerTele.text;
                           String password=_textFieldControllerPassword.text;
                           if(Username.isNotEmpty && Email.isNotEmpty && Tele.isNotEmpty && password.isNotEmpty ){
-                            final url =  Uri.parse('http://172.16.11.133:3342/Users/registreLivreur');
+                            final url =  Uri.parse('http://172.17.224.5:3342/Users/registreLivreur');
                             try{
                               Map<String, String> headers = {
                                 'Content-Type': 'application/json',

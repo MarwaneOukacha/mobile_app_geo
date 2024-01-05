@@ -4,7 +4,7 @@ import 'dart:convert';
 
 
   FetchLivreurs() async{
-    final url =  Uri.parse('http://172.16.11.133:3342/Users/Livreurs');
+    final url =  Uri.parse('http://172.17.224.5:3342/Users/Livreurs');
     try{
       Map<String, String> headers = {
         'Content-Type': 'application/json',

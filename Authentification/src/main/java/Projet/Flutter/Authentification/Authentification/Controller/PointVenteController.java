@@ -3,6 +3,7 @@ package Projet.Flutter.Authentification.Authentification.Controller;
 import Projet.Flutter.Authentification.Authentification.ServicesInterfaces.PointVenteInterface;
 import Projet.Flutter.Authentification.Authentification.entitys.AppUSER;
 import Projet.Flutter.Authentification.Authentification.entitys.PointVente;
+import Projet.Flutter.Authentification.Authentification.reposetory.PointVenteReposetory;
 import Projet.Flutter.Authentification.Authentification.reposetory.UserReposetory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/PointVente")
-//@CrossOrigin("*")
+@CrossOrigin("*")
 public class PointVenteController {
     @Autowired
     private PointVenteInterface service;
     @Autowired
     private UserReposetory FournisseurRepo;
+    @Autowired
+    private PointVenteReposetory repo;
     @GetMapping("/{id}")
     public  List<PointVente> GetAllPointByLivreurId(@PathVariable("id") Long id){
 
@@ -47,5 +50,11 @@ public class PointVenteController {
             throw new RuntimeException(e);
         }
         service.addPointVente(point);
+    }
+    @PutMapping("affecte")
+    public void AffectePointToLivreur(@RequestBody PointVente point){
+        PointVente pointV=repo.findById(point.getId()).get();
+        pointV.setIdLivreur(point.getIdLivreur());
+        repo.save(pointV);
     }
 }
