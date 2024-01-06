@@ -43,7 +43,7 @@ class _menuState extends State<menu> {
                 menu[index],
                 style: TextStyle(
                   color: index == selectedIndex ? Colors.white : Colors.white60,
-                  fontSize: 24.0,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,
                 ),

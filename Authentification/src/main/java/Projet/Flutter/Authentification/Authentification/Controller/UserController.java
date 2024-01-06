@@ -49,4 +49,13 @@ public class UserController {
     public AppUSER GetLivreur(@PathVariable Long id){
         return repo.findById(id).get();
     }
+    @GetMapping("livreurByEmail/{email}")
+    public Long GetLivreurID(@PathVariable String email){
+        return repo.findByEmail(email).getID();
+    }
+
+    @GetMapping("fournisseurByEmail/{email}")
+    public Long GetFournisseurID(@PathVariable String email){
+        return repo.findByEmail(email).getID();
+    }
 }

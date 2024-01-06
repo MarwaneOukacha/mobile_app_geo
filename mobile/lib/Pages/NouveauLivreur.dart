@@ -19,16 +19,6 @@ class NouveauLivreur extends StatelessWidget{
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>FournisseurAcceuil()));
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
-        ),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -41,15 +31,7 @@ class NouveauLivreur extends StatelessWidget{
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(
-                    "Ajouter un nouveau livreur",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 4),
                   Text(
                     "Creer un compte à votre livreur",
                     style: TextStyle(fontSize: 15, color: Colors.grey),
@@ -96,7 +78,7 @@ class NouveauLivreur extends StatelessWidget{
                               );
                               print(response.statusCode);
                               if (response.statusCode == 200) {
-                                Navigator.push(context,MaterialPageRoute(builder: (context)=>FournisseurAcceuil()));
+                                Navigator.push(context,MaterialPageRoute(builder: (context)=>FournisseurAcceuil(email: "",)));
                               }else {
                                 print("Erreur de connexion");
                               }

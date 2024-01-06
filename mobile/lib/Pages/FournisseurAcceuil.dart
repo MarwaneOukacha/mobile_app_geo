@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:mobile/Pages/FournisseurMap.dart';
+import 'package:mobile/Pages/Login.dart';
 import 'package:mobile/Pages/NouveauLivreur.dart';
+import 'package:mobile/Pages/NouveaupointVente.dart';
 import 'package:mobile/Widgets/menu.dart';
 
 import '../services/FetchUserData.dart';
@@ -10,6 +12,8 @@ import '../services/MonSearchDelegate.dart';
 
 
 class FournisseurAcceuil extends StatefulWidget {
+  final String email;
+  FournisseurAcceuil({required this.email});
   @override
   _FournisseurAcceuilState createState() => _FournisseurAcceuilState();
 
@@ -51,7 +55,7 @@ class _FournisseurAcceuilState extends State<FournisseurAcceuil> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => FournisseurMap(),
+                builder: (context) => FournisseurMap(emailLivreur: livreursData[index]['email'], email: widget.email,),
               ),
             );
           },
@@ -103,9 +107,48 @@ class _FournisseurAcceuilState extends State<FournisseurAcceuil> {
         ],
       ),
       drawer: Drawer(
-        // ... Votre code de tiroir (Drawer) ici
-      ),
-      body:Container(color: Colors.blue,
+    child: ListView(
+    padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          child: Text('En-tête du drawer'),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+        ),
+        ListTile(
+          title: Text('Accueil'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.map),
+          title: Text('Ajouter un point de vente '),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NouveauPoint(email: widget.email)), // Navigation vers AutreWidget
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('Deconnexion '),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Login()), // Navigation vers AutreWidget
+            );
+          },
+        ),
+        // Autres éléments du drawer...
+      ],
+    ),
+    ),
+    body:Container(color: Colors.blue,
         child: Column(
           children: <Widget>[
         menu(onItemSelected: (index) {

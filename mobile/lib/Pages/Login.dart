@@ -93,9 +93,9 @@ class Login extends StatelessWidget {
                               if (response.statusCode == 200) {
                                 String token=response.body;
                                 if(JWTservice(token)['Role']=='livreur'){
-                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>LivreurAcceuil()));
+                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>LivreurAcceuil(email:email)));
                                 }else{
-                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>FournisseurAcceuil()));
+                                  Navigator.push(context,MaterialPageRoute(builder: (context)=>FournisseurAcceuil(email:email)));
                                 }
                               }else {
                                 print("Erreur de connexion");
